@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-const port = 5000;
+import app from "./app"
+const port:number = 5000;
 
 //DB connection :
 async function dbFunc() {
@@ -16,6 +17,4 @@ async function dbFunc() {
 }
 dbFunc();
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+

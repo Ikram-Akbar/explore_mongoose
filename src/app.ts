@@ -1,4 +1,10 @@
-import express from "express";
+import express, { Application, NextFunction, Request, Response } from "express";
 import cors from "cors";
-const app = express();
-app.use(cors())
+const app: Application = express();
+app.use(cors());
+
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
+  res.send("Hello World!");
+});
+
+export default app;

@@ -1,9 +1,33 @@
 import { NextFunction, Request, Response } from "express";
-import { createDataForDb } from "./student.service";
+import { createDataForDb, getStudentsDataFromDb } from "./student.service";
 
 
-const getStudentController = async (req: Request, res: Response, next: NextFunction) => {
-    
-    const callDB = await createDataForDb();
+//POST request : 
+export const getStudentController = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const data = req.body;
+    const studentData = await createDataForDb(data);
+    res.status(200).json({
+        status: "success",
+        data: studentData,
+    });
     next();
-}
+};
+
+
+//GET request : 
+export const getStudentsData = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => {
+    const studentsData = await getStudentsDataFromDb();
+    res.status(200).json({
+        status: "success",
+        data: studentsData,
+    });
+    next();
+};
